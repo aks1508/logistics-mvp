@@ -15,7 +15,6 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    // If backend returns 401, wipe auth so UI doesn’t get stuck
     if (err?.response?.status === 401) clearAuth();
     return Promise.reject(err);
   }

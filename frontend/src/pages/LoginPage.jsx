@@ -25,7 +25,6 @@ export default function LoginPage() {
 
       setAuth(token, user);
 
-      // Force role-based landing (no loc.state.from to avoid client going to /jobs)
       const home = user.role === "client" ? "/client/jobs" : "/jobs";
       nav(home, { replace: true });
     } catch (err) {

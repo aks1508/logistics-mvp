@@ -208,7 +208,6 @@ exports.uploadPodPhoto = async (req, res) => {
       return res.status(400).json({ message: "Job has no assigned driver" });
     }
 
-    // only allow POD upload once job is in progress or delivered
     if (!["PICKED_UP", "ON_ROUTE", "DELIVERED"].includes(job.status)) {
       return res.status(400).json({
         message: "POD upload not allowed at this status",
@@ -219,7 +218,6 @@ exports.uploadPodPhoto = async (req, res) => {
       return res.status(400).json({ message: "Photo file is required" });
     }
 
-    // prevent overwrite
     if (job.pod && job.pod.photoUrl) {
       return res.status(400).json({ message: "POD already uploaded" });
     }
@@ -233,10 +231,9 @@ exports.uploadPodPhoto = async (req, res) => {
 
     await job.save();
 
-    // Optional (but nice): return the updated job so frontend can just setJob()
     return res.json({
       message: "POD photo uploaded",
-      job: job, // or return only pod+jobId if you prefer
+      job: job,
     });
   } catch (error) {
     return res.status(400).json({ message: error.message });
