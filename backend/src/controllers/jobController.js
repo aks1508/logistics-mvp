@@ -46,12 +46,13 @@ exports.assignDriver = async (req, res) => {
   }
 };
 
+//map created so that driver cannot jump statuses
 const ALLOWED_NEXT = {
   ASSIGNED: ["PICKED_UP"],
   PICKED_UP: ["ON_ROUTE"],
   ON_ROUTE: ["DELIVERED"],
   DELIVERED: [],
-  CREATED: ["ASSIGNED"], // normally admin sets ASSIGNED
+  CREATED: ["ASSIGNED"], //only for admin
 };
 
 exports.updateStatus = async (req, res) => {

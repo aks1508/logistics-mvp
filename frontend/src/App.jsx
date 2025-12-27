@@ -25,14 +25,16 @@ export default function App() {
             <Route path="/jobs/new" element={<CreateJobPage />} />
           </Route>
 
+          {/*admin+driver*/}
+
+          <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/jobs/:id" element={<JobDetailPage />} />
+
           <Route element={<RequireRole roles={["client"]} />}>
             <Route path="/client/jobs" element={<ClientJobsPage />} />
             <Route path="/client/jobs/:id" element={<ClientJobDetailPage />} />
             <Route path="/client/jobs/new" element={<ClientCreateJobPage />} />
           </Route>
-
-          <Route path="/jobs" element={<JobsPage />} />
-          <Route path="/jobs/:id" element={<JobDetailPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />

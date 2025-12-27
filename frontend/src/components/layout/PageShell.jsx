@@ -18,10 +18,11 @@ export default function PageShell({ children }) {
   const isClient = user?.role === "client";
 
   const linkClass = (pathPrefix) => {
-    const active =
-      pathPrefix === "/"
-        ? location.pathname === "/"
-        : location.pathname.startsWith(pathPrefix);
+    const isHome = pathPrefix === "/";
+    const isExactMatch = location.pathname === "/";
+    const isPrefixMatch = location.pathname.startsWith(pathPrefix);
+
+    const active = isHome ? isExactMatch : isPrefixMatch;
 
     return `rounded-xl px-3 py-2 text-sm hover:bg-white/10 ${
       active ? "bg-white/10" : ""

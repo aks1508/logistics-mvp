@@ -80,7 +80,6 @@ export default function JobDetailPage() {
   // Load job details when job id changes
   useEffect(() => {
     load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // POD preview when file changes
